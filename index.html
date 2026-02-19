@@ -1,0 +1,1355 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Для Анжелики — Режим спокойствия 🌙</title>
+    <meta name="description" content="Объятие на расстоянии, спокойный вдох, небольшой список заботы." />
+    <style>
+        :root {
+            --bg1: #0b1020;
+            --bg2: #1a1230;
+            --card: rgba(255, 255, 255, .08);
+            --card2: rgba(255, 255, 255, .12);
+            --text: rgba(255, 255, 255, .92);
+            --muted: rgba(255, 255, 255, .70);
+            --accent1: #ff6fb7;
+            --accent2: #7dd3fc;
+            --accent3: #a78bfa;
+            --shadow: 0 20px 60px rgba(0, 0, 0, .45);
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--text);
+            overflow-x: hidden;
+            background: transparent;
+        }
+
+        /* Scroll-safe background layer */
+        .bg {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            pointer-events: none;
+            background: radial-gradient(1200px 700px at 20% 10%, rgba(255, 111, 183, .18), transparent 60%),
+                radial-gradient(900px 600px at 80% 20%, rgba(125, 211, 252, .14), transparent 55%),
+                radial-gradient(900px 700px at 60% 80%, rgba(167, 139, 250, .14), transparent 60%),
+                linear-gradient(160deg, var(--bg1), var(--bg2));
+        }
+
+        /* floating stars (scroll-safe) */
+        .stars,
+        .stars:before,
+        .stars:after {
+            content: "";
+            position: fixed;
+            inset: -80px;
+            /* biraz büyük tutuyoruz ki boşluk olmasın */
+            pointer-events: none;
+            opacity: .35;
+
+            background-repeat: repeat;
+            background-size: 420px 420px;
+            background-image:
+                radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, .9), transparent 60%),
+                radial-gradient(1.6px 1.6px at 60% 10%, rgba(255, 255, 255, .7), transparent 60%),
+                radial-gradient(1.2px 1.2px at 80% 40%, rgba(255, 255, 255, .6), transparent 60%),
+                radial-gradient(1.8px 1.8px at 30% 75%, rgba(255, 255, 255, .75), transparent 60%),
+                radial-gradient(1.4px 1.4px at 70% 85%, rgba(255, 255, 255, .65), transparent 60%);
+
+            animation: starDrift 26s linear infinite;
+        }
+
+        .stars:before {
+            opacity: .22;
+            filter: blur(0.2px);
+            background-size: 560px 560px;
+            animation-duration: 40s;
+        }
+
+        .stars:after {
+            opacity: .18;
+            filter: blur(0.6px);
+            background-size: 760px 760px;
+            animation-duration: 65s;
+        }
+
+        @keyframes starDrift {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 0 200px;
+            }
+        }
+
+        .wrap {
+            position: relative;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 28px 18px 60px;
+        }
+
+        header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 10px;
+            margin-bottom: 18px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .10);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+            backdrop-filter: blur(10px);
+            font-size: 13px;
+            color: var(--muted);
+            user-select: none;
+        }
+
+        h1 {
+            margin: 8px 0 6px;
+            font-size: clamp(26px, 3.6vw, 40px);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        .sub {
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+            max-width: 68ch;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        @media (max-width: 860px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .06));
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+            padding: 16px;
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            letter-spacing: .01em;
+            color: rgba(255, 255, 255, .92);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .pillRow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .pill {
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .10);
+            cursor: pointer;
+            user-select: none;
+            transition: transform .15s ease, background .15s ease, border-color .15s ease;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .85);
+        }
+
+        .pill:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, .11);
+        }
+
+        .pill.active {
+            background: rgba(255, 111, 183, .18);
+            border-color: rgba(255, 111, 183, .35);
+        }
+
+        /* Surprise picker */
+        .pickGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 520px) {
+            .pickGrid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pickBtn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, .18);
+            border: 1px solid rgba(255, 255, 255, .10);
+            cursor: pointer;
+            user-select: none;
+            transition: transform .15s ease, background .15s ease, border-color .15s ease;
+        }
+
+        .pickBtn:hover {
+            transform: translateY(-1px);
+            background: rgba(0, 0, 0, .22);
+        }
+
+        .pickBtn.active {
+            border-color: rgba(125, 211, 252, .45);
+            background: rgba(125, 211, 252, .10);
+        }
+
+        .pickTitle {
+            font-weight: 800;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        .pickHint {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 2px;
+            line-height: 1.25;
+        }
+
+        .pickIcon {
+            font-size: 18px;
+            opacity: .95;
+            flex: 0 0 auto;
+        }
+
+        .pickPreview {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .pickPreview .label {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .pickPreview .value {
+            font-size: 14px;
+            color: rgba(255, 255, 255, .92);
+            line-height: 1.45;
+        }
+
+        .pickActions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .pickActions button {
+            flex: 1 1 160px;
+        }
+
+        .smallNote {
+            margin-top: 8px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, .55);
+            line-height: 1.35;
+        }
+
+        /* Left column filler: Comfort Corner */
+        .comfortCorner {
+            margin-top: 14px;
+            padding: 14px;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .05));
+            border: 1px solid rgba(255, 255, 255, .12);
+        }
+
+        .comfortGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 520px) {
+            .comfortGrid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .miniPanel {
+            padding: 12px;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, .18);
+            border: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .miniTitle {
+            font-weight: 800;
+            font-size: 13px;
+            margin: 0 0 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .miniText {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .timerValue {
+            margin-top: 8px;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: .02em;
+            text-align: center;
+            color: rgba(255, 255, 255, .92);
+        }
+
+        .miniBtns {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            justify-content: center;
+        }
+
+        .miniBtns button {
+            flex: 1 1 120px;
+        }
+
+        .joyCard {
+            margin-top: 8px;
+            padding: 10px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .joyBig {
+            font-size: 14px;
+            color: rgba(255, 255, 255, .92);
+            line-height: 1.45;
+        }
+
+        .joySmall {
+            margin-top: 6px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, .60);
+            line-height: 1.35;
+        }
+
+        .hugBtn {
+            width: 100%;
+        }
+
+        .hugHint {
+            margin-top: 8px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, .55);
+            line-height: 1.35;
+            text-align: center;
+        }
+
+        .floatHeart {
+            position: fixed;
+            left: var(--x);
+            top: var(--y);
+            font-size: var(--s);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            filter: drop-shadow(0 8px 18px rgba(0,0,0,.45));
+            animation: floatUp 1400ms ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translate(-50%, 0) scale(.9);
+                opacity: 0;
+            }
+            15% {
+                opacity: .95;
+            }
+            100% {
+                transform: translate(-50%, -120px) scale(1.08);
+                opacity: 0;
+            }
+        }
+
+        .doneGlow {
+            box-shadow: 0 0 0 1px rgba(125, 211, 252, .18), 0 0 40px rgba(125, 211, 252, .15);
+        }
+
+        /* Breathing orb */
+        .breathBox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 6px 0 12px;
+        }
+
+        .orbWrap {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            display: grid;
+            place-items: center;
+            margin: 6px auto 10px;
+        }
+
+        .orb {
+            width: 150px;
+            height: 150px;
+            border-radius: 999px;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .35), transparent 45%),
+                radial-gradient(circle at 70% 70%, rgba(125, 211, 252, .25), transparent 55%),
+                radial-gradient(circle at 40% 70%, rgba(255, 111, 183, .25), transparent 55%),
+                linear-gradient(135deg, rgba(167, 139, 250, .55), rgba(255, 111, 183, .45));
+            box-shadow:
+                0 0 0 10px rgba(255, 255, 255, .04),
+                0 0 70px rgba(167, 139, 250, .22),
+                0 0 90px rgba(255, 111, 183, .16);
+            transform: scale(1);
+            transition: transform .2s ease;
+            animation: breathe 8s ease-in-out infinite;
+        }
+
+        .ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            border: 1px dashed rgba(255, 255, 255, .18);
+            opacity: .6;
+            animation: spin 18s linear infinite;
+        }
+
+        .ring2 {
+            position: absolute;
+            inset: 18px;
+            border-radius: 999px;
+            border: 1px dashed rgba(255, 255, 255, .12);
+            opacity: .45;
+            animation: spin 28s linear reverse infinite;
+        }
+
+        @keyframes breathe {
+            0% {
+                transform: scale(0.92);
+                filter: brightness(0.95);
+            }
+
+            25% {
+                transform: scale(1.05);
+                filter: brightness(1.05);
+            }
+
+            50% {
+                transform: scale(1.00);
+                filter: brightness(1.0);
+            }
+
+            75% {
+                transform: scale(1.06);
+                filter: brightness(1.06);
+            }
+
+            100% {
+                transform: scale(0.92);
+                filter: brightness(0.95);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .breathText {
+            text-align: center;
+            margin-top: 6px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .breathLine {
+            font-size: 18px;
+            color: rgba(255, 255, 255, .92);
+            margin-top: 10px;
+            text-align: center;
+            letter-spacing: .01em;
+        }
+
+        .btnRow {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        button {
+            appearance: none;
+            border: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(255, 255, 255, .08);
+            color: rgba(255, 255, 255, .9);
+            padding: 10px 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform .15s ease, background .15s ease, border-color .15s ease;
+            font-weight: 600;
+            letter-spacing: .01em;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, .11);
+        }
+
+        button.primary {
+            border-color: rgba(255, 111, 183, .35);
+            background: rgba(255, 111, 183, .16);
+        }
+
+        /* checklist */
+        .checks {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .check {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 12px;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, .18);
+            border: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .box {
+            width: 18px;
+            height: 18px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, .20);
+            background: rgba(255, 255, 255, .06);
+            flex: 0 0 18px;
+            margin-top: 2px;
+            display: grid;
+            place-items: center;
+            font-size: 12px;
+        }
+
+        .check.done .box {
+            background: rgba(125, 211, 252, .20);
+            border-color: rgba(125, 211, 252, .35);
+        }
+
+        .checkTitle {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .checkDesc {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 2px;
+            line-height: 1.35;
+        }
+
+        /* note */
+        .note {
+            margin-top: 12px;
+            padding: 14px;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .05));
+            border: 1px solid rgba(255, 255, 255, .12);
+        }
+
+        .note p {
+            margin: 0;
+            color: rgba(255, 255, 255, .9);
+            line-height: 1.55;
+            font-size: 14px;
+        }
+
+        .sig {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        footer {
+            margin-top: 18px;
+            text-align: center;
+            color: rgba(255, 255, 255, .55);
+            font-size: 12px;
+        }
+
+        /* Warm mode */
+        body.warm {
+            background: transparent;
+        }
+
+        body.warm .bg {
+            background: radial-gradient(1200px 700px at 20% 10%, rgba(255, 173, 106, .18), transparent 60%),
+                radial-gradient(900px 600px at 80% 20%, rgba(255, 111, 183, .14), transparent 55%),
+                radial-gradient(900px 700px at 60% 80%, rgba(167, 139, 250, .12), transparent 60%),
+                linear-gradient(160deg, #160b0b, #2a1220);
+        }
+
+        body.warm .orb {
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .35), transparent 45%),
+                radial-gradient(circle at 70% 70%, rgba(255, 173, 106, .25), transparent 55%),
+                radial-gradient(circle at 40% 70%, rgba(255, 111, 183, .25), transparent 55%),
+                linear-gradient(135deg, rgba(255, 173, 106, .55), rgba(255, 111, 183, .45));
+            box-shadow:
+                0 0 0 10px rgba(255, 255, 255, .04),
+                0 0 70px rgba(255, 173, 106, .20),
+                0 0 90px rgba(255, 111, 183, .14);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg" aria-hidden="true"></div>
+    <div class="stars" aria-hidden="true"></div>
+
+    <div class="wrap">
+        <header>
+            <div>
+                <div class="badge">🌙 «Режим спокойствия» · Объятие на расстоянии</div>
+                <h1>Привет <span id="name">Angelika</span>… 🤍</h1>
+                <p class="sub">
+                    Будь сегодня к себе добрa. Тебе не нужно «решать» это.
+                    Просто отдохнуть — уже достижение.
+                </p>
+            </div>
+            <div class="badge" id="dateBadge">📅</div>
+        </header>
+
+        <div class="grid">
+            <!-- LEFT -->
+            <section class="card">
+                <h2>🫧 60 секунд успокоения</h2>
+
+                <div class="orbWrap" role="img" aria-label="Анимация дыхания">
+                    <div class="ring"></div>
+                    <div class="ring2"></div>
+                    <div class="orb" id="orb"></div>
+                </div>
+
+                <div class="breathLine" id="breathLine">Вдох…</div>
+                <div class="breathText" id="breathText">Вдох 4 с · задержка 4 с · выдох 6 с (мягко)</div>
+
+                <div class="btnRow">
+                    <button class="primary" id="toggleBreath">Запустить дыхательное упражнение</button>
+                    <button id="toggleWarm">Тёплый режим ☕</button>
+                    <button id="toggleSound">Звук: ВЫКЛ 🔇</button>
+                </div>
+
+                <div class="note" style="margin-top:14px">
+                    <p id="miniMessage">
+                        «Даже на расстоянии я рядом. Сегодня сосредоточься на том, чтобы расслабиться.»
+                    </p>
+                    <div class="sig">— Небольшая записка от Самета 🤍</div>
+                </div>
+
+                <div class="comfortCorner" id="comfortCorner">
+                    <h2 style="margin:0 0 6px; font-size:16px; display:flex; align-items:center; gap:10px;">✨ Уголок уюта</h2>
+                    <p class="muted" style="margin:0">Никакой «продуктивности». Только маленькие вещи, которые делают легче.</p>
+
+                    <div class="comfortGrid">
+                        <div class="miniPanel" id="teaTimerPanel">
+                            <div class="miniTitle">⏳ Таймер 5 минут</div>
+                            <div class="miniText">Для тёплого напитка / грелки / просто закрыть глаза.</div>
+                            <div class="timerValue" id="timerValue">05:00</div>
+                            <div class="miniBtns">
+                                <button id="timerStart" class="primary">Старт</button>
+                                <button id="timerReset">Сброс</button>
+                            </div>
+                        </div>
+
+                        <div class="miniPanel" id="joyPanel">
+                            <div class="miniTitle">🍓 Маленькая радость</div>
+                            <div class="miniText">Нажми — и получишь одну мягкую мысль.</div>
+                            <div class="joyCard">
+                                <div class="joyBig" id="joyBig">Нажми «Ещё» ✨</div>
+                                <div class="joySmall" id="joySmall">Это просто поддержка. Никаких требований.</div>
+                            </div>
+                            <div class="miniBtns">
+                                <button id="joyNext" class="primary">Ещё</button>
+                                <button id="joyCopy">Копировать</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:10px">
+                        <button id="hugNow" class="hugBtn">🫶 Виртуальное объятие</button>
+                        <div class="hugHint">Нажми и смотри — маленькие сердечки поднимутся вверх. (Это не звук и не таймер, просто милота.)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT -->
+            <aside class="card">
+                <h2>🧸 Мини‑список заботы во время ПМС</h2>
+                <p class="muted">Если хочешь — выбери только одно. Не обязательно всё.</p>
+
+                <div class="checks" id="checks">
+                    <div class="check" data-i="0">
+                        <div class="box">✓</div>
+                        <div>
+                            <div class="checkTitle">Выпей что‑то тёплое</div>
+                            <div class="checkDesc">Чай, тёплая вода, горячий шоколад… что тебе больше по душе.</div>
+                        </div>
+                    </div>
+
+                    <div class="check" data-i="1">
+                        <div class="box">✓</div>
+                        <div>
+                            <div class="checkTitle">Приложи тепло к животу</div>
+                            <div class="checkDesc">Грелка / термофор, если есть — отлично.</div>
+                        </div>
+                    </div>
+
+                    <div class="check" data-i="2">
+                        <div class="box">✓</div>
+                        <div>
+                            <div class="checkTitle">Небольшая прогулка или растяжка</div>
+                            <div class="checkDesc">Даже 2–5 минут могут помочь.</div>
+                        </div>
+                    </div>
+
+                    <div class="check" data-i="3">
+                        <div class="box">✓</div>
+                        <div>
+                            <div class="checkTitle">Отложи телефон</div>
+                            <div class="checkDesc">Дай отдохнуть глазам. Даже свет иногда утомляет.</div>
+                        </div>
+                    </div>
+
+                    <div class="check" data-i="4">
+                        <div class="box">✓</div>
+                        <div>
+                            <div class="checkTitle">Говори с собой по‑добрей</div>
+                            <div class="checkDesc">Ощущение вздутия/отёка нормальны. Не будь слишком строга к себе
+                                сегодня.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pillRow" style="margin-top:12px">
+                    <div class="pill" data-msg="0">🤍 «Я рядом»</div>
+                    <div class="pill" data-msg="1">🌿 «Режим спокойствия»</div>
+                    <div class="pill" data-msg="2">🫶 «Объятие»</div>
+                    <div class="pill" data-msg="3">✨ «Сильная»</div>
+                </div>
+
+                <div class="note">
+                    <p id="altMessage">Если хочешь — поговорим, если нет — ничего страшного. Сегодня — твой день.</p>
+                </div>
+
+                <div class="note" style="margin-top:12px">
+                    <h2 style="margin:0 0 8px; font-size:16px; display:flex; align-items:center; gap:10px;">🎁 Выбери
+                        мини‑сюрприз</h2>
+                    <p class="muted" style="margin:0">Пусть выберет одно; ты подстроишь сюрприз под это. (Даже если вы
+                        далеко.)</p>
+
+                    <div class="pickGrid" id="pickGrid">
+                        <div class="pickBtn" data-pick="flowers">
+                            <div>
+                                <div class="pickTitle">Цветы</div>
+                                <div class="pickHint">Небольшой букет или один цветок</div>
+                            </div>
+                            <div class="pickIcon">💐</div>
+                        </div>
+
+                        <div class="pickBtn" data-pick="chocolate">
+                            <div>
+                                <div class="pickTitle">Шоколад</div>
+                                <div class="pickHint">Любимая марка / тёмный или молочный</div>
+                            </div>
+                            <div class="pickIcon">🍫</div>
+                        </div>
+
+                        <div class="pickBtn" data-pick="tea">
+                            <div>
+                                <div class="pickTitle">Тёплый напиток</div>
+                                <div class="pickHint">Ромашка / какао / кофе</div>
+                            </div>
+                            <div class="pickIcon">☕</div>
+                        </div>
+
+                        <div class="pickBtn" data-pick="movie">
+                            <div>
+                                <div class="pickTitle">Режим фильма</div>
+                                <div class="pickHint">Совместный просмотр + перекус</div>
+                            </div>
+                            <div class="pickIcon">🎬</div>
+                        </div>
+
+                        <div class="pickBtn" data-pick="care">
+                            <div>
+                                <div class="pickTitle">Пакет заботы</div>
+                                <div class="pickHint">Термогрелка + уютные вещи</div>
+                            </div>
+                            <div class="pickIcon">🧸</div>
+                        </div>
+
+                        <div class="pickBtn" data-pick="hug">
+                            <div>
+                                <div class="pickTitle">Объятие</div>
+                                <div class="pickHint">Просто любовь и спокойствие</div>
+                            </div>
+                            <div class="pickIcon">🫶</div>
+                        </div>
+                    </div>
+
+                    <div class="pickPreview">
+                        <div class="label">Выбрано:</div>
+                        <div class="value" id="pickPreview">Пока не выбрано</div>
+                    </div>
+
+                    <div class="pickActions">
+                        <button id="sharePick" class="primary">Поделиться выбором</button>
+                        <button id="sendTelegram">Напиши мне в Telegram</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            Эта страница — не для давления, а для спокойствия. 🌙
+        </footer>
+    </div>
+
+
+    <!-- Optional super-soft background sound (works after user interaction) -->
+    <audio id="bgAudio" loop preload="auto">
+        <!-- Tiny, safe, simple tone generated via WebAudio instead of external file -->
+    </audio>
+
+    <script>
+        // Date badge
+        const dateBadge = document.getElementById('dateBadge');
+        const now = new Date();
+        dateBadge.textContent = "📅 " + now.toLocaleDateString(undefined, { weekday: "short", year: "numeric", month: "short", day: "numeric" });
+
+        // Checklist toggles
+        document.getElementById('checks').addEventListener('click', (e) => {
+            const item = e.target.closest('.check');
+            if (!item) return;
+            item.classList.toggle('done');
+            item.querySelector('.box').textContent = item.classList.contains('done') ? "✓" : "✓";
+            saveChecks();
+        });
+
+        function saveChecks() {
+            const states = [...document.querySelectorAll('.check')].map(x => x.classList.contains('done'));
+            localStorage.setItem('care_checks', JSON.stringify(states));
+        }
+        function loadChecks() {
+            try {
+                const states = JSON.parse(localStorage.getItem('care_checks') || "[]");
+                document.querySelectorAll('.check').forEach((el, i) => {
+                    if (states[i]) el.classList.add('done');
+                });
+            } catch { }
+        }
+        loadChecks();
+
+        // Message pills
+        const miniMessage = document.getElementById('miniMessage');
+        const altMessage = document.getElementById('altMessage');
+        const pills = document.querySelectorAll('.pill');
+
+        const messages = [
+            {
+                a: "«Даже на расстоянии я рядом. Сегодня сосредоточься на том, чтобы расслабиться.»",
+                b: "Если хочешь — поговорим, если нет — ничего страшного. Сегодня — твой день."
+            },
+            {
+                a: "«Сейчас всё может казаться тяжёлым. Сделай вдох… это пройдёт постепенно.»",
+                b: "Выпей что‑то тёплое, немного отдохни. Не нагружай себя 🤍"
+            },
+            {
+                a: "«Представь маленькое объятие: от меня к тебе. (Да, и на расстоянии работает.)»",
+                b: "Я рядом. Может быть тихо или можно поговорить — как тебе удобнее."
+            },
+            {
+                a: "«Даже в трудные дни ты сильна. Сегодня достаточно и минимума.»",
+                b: "Не осуждай себя. Твоё тело делает своё ✨"
+            }
+        ];
+
+        pills.forEach(p => {
+            p.addEventListener('click', () => {
+                pills.forEach(x => x.classList.remove('active'));
+                p.classList.add('active');
+                const idx = Number(p.dataset.msg);
+                miniMessage.textContent = messages[idx].a;
+                altMessage.textContent = messages[idx].b;
+            });
+        });
+
+        // Warm mode
+        const warmBtn = document.getElementById('toggleWarm');
+        warmBtn.addEventListener('click', () => {
+            document.body.classList.toggle('warm');
+            warmBtn.textContent = document.body.classList.contains('warm') ? "Тёплый режим ✅" : "Тёплый режим ☕";
+            localStorage.setItem('warm_mode', document.body.classList.contains('warm') ? "1" : "0");
+        });
+        if (localStorage.getItem('warm_mode') === "1") {
+            document.body.classList.add('warm');
+            warmBtn.textContent = "Тёплый режим ✅";
+        }
+
+        // Breathing guide (text cues)
+        const breathLine = document.getElementById('breathLine');
+        const breathText = document.getElementById('breathText');
+        const breathBtn = document.getElementById('toggleBreath');
+
+        let breathTimer = null;
+        let breathOn = false;
+
+        const pattern = [
+            { t: "Вдох…", d: 4000, hint: "Вдыхай 4 секунды" },
+            { t: "Задержи…", d: 4000, hint: "Задержи дыхание 4 секунды" },
+            { t: "Выдох…", d: 6000, hint: "Мягко выдыхай 6 секунд" }
+        ];
+
+        function startBreath() {
+            breathOn = true;
+            breathBtn.textContent = "Остановить";
+            let i = 0;
+            const run = () => {
+                const step = pattern[i % pattern.length];
+                breathLine.textContent = step.t;
+                breathText.textContent = step.hint;
+                breathTimer = setTimeout(() => { i++; run(); }, step.d);
+            };
+            run();
+        }
+
+        function stopBreath() {
+            breathOn = false;
+            breathBtn.textContent = "Запустить дыхательное упражнение";
+            clearTimeout(breathTimer);
+            breathTimer = null;
+            breathLine.textContent = "Вдох…";
+            breathText.textContent = "Вдох 4 с · задержка 4 с · выдох 6 с (мягко)";
+        }
+
+        breathBtn.addEventListener('click', () => {
+            if (breathOn) stopBreath();
+            else startBreath();
+        });
+
+        // Soothing ambient sound (3 levels) via WebAudio (no external files)
+        const soundBtn = document.getElementById('toggleSound');
+        let audioCtx = null;
+
+        let noiseSrc = null;
+        let gain = null;
+        let filter = null;
+        let lfo = null;
+        let lfoGain = null;
+
+        // 0=Off, 1=Тихо, 2=Средне, 3=Громко
+        let soundLevel = Number(localStorage.getItem('sound_level') || "0");
+
+        // Levels
+        const LEVEL_GAIN = {
+            1: 0.018,
+            2: 0.032,
+            3: 0.048
+        };
+
+        function ensureAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function createPinkNoiseBuffer(ctx, seconds = 2) {
+            const sampleRate = ctx.sampleRate;
+            const length = sampleRate * seconds;
+            const buffer = ctx.createBuffer(1, length, sampleRate);
+            const data = buffer.getChannelData(0);
+
+            let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+            for (let i = 0; i < length; i++) {
+                const white = Math.random() * 2 - 1;
+                b0 = 0.99886 * b0 + white * 0.0555179;
+                b1 = 0.99332 * b1 + white * 0.0750759;
+                b2 = 0.96900 * b2 + white * 0.1538520;
+                b3 = 0.86650 * b3 + white * 0.3104856;
+                b4 = 0.55000 * b4 + white * 0.5329522;
+                b5 = -0.7616 * b5 - white * 0.0168980;
+                const pink = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+                b6 = white * 0.115926;
+                data[i] = (pink * 0.08);
+            }
+            return buffer;
+        }
+
+        function startNodes() {
+            ensureAudio();
+
+            noiseSrc = audioCtx.createBufferSource();
+            noiseSrc.buffer = createPinkNoiseBuffer(audioCtx, 2);
+            noiseSrc.loop = true;
+
+            filter = audioCtx.createBiquadFilter();
+            filter.type = "lowpass";
+            filter.frequency.value = 520;
+            filter.Q.value = 0.7;
+
+            gain = audioCtx.createGain();
+            gain.gain.value = 0.00001;
+
+            // gentle wave
+            lfo = audioCtx.createOscillator();
+            lfo.type = "sine";
+            lfo.frequency.value = 0.07;
+
+            lfoGain = audioCtx.createGain();
+            lfoGain.gain.value = 120;
+
+            lfo.connect(lfoGain);
+            lfoGain.connect(filter.frequency);
+
+            noiseSrc.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            noiseSrc.start();
+            lfo.start();
+        }
+
+        function stopNodes() {
+            try { noiseSrc && noiseSrc.stop(); } catch { }
+            try { lfo && lfo.stop(); } catch { }
+            noiseSrc = null; filter = null; gain = null; lfo = null; lfoGain = null;
+        }
+
+        function setLevel(level) {
+            soundLevel = level;
+            localStorage.setItem('sound_level', String(soundLevel));
+
+            if (soundLevel === 0) {
+                soundBtn.textContent = "Звук: ВЫКЛ 🔇";
+                if (gain && audioCtx) {
+                    const t = audioCtx.currentTime;
+                    gain.gain.cancelScheduledValues(t);
+                    gain.gain.setValueAtTime(gain.gain.value, t);
+                    gain.gain.linearRampToValueAtTime(0.00001, t + 0.9);
+                    setTimeout(() => stopNodes(), 950);
+                } else {
+                    stopNodes();
+                }
+                return;
+            }
+
+            if (!gain) startNodes();
+
+            const target = LEVEL_GAIN[soundLevel] || LEVEL_GAIN[2];
+            const t = audioCtx.currentTime;
+            gain.gain.cancelScheduledValues(t);
+            gain.gain.setValueAtTime(Math.max(gain.gain.value, 0.00001), t);
+            gain.gain.linearRampToValueAtTime(target, t + 1.0);
+
+            if (soundLevel === 1) soundBtn.textContent = "Звук: Тихо 🌙";
+            if (soundLevel === 2) soundBtn.textContent = "Звук: Средне ☁️";
+            if (soundLevel === 3) soundBtn.textContent = "Звук: Громко ✨";
+        }
+
+        soundBtn.addEventListener('click', async () => {
+            ensureAudio();
+            await audioCtx.resume();
+            const next = (soundLevel + 1) % 4;
+            setLevel(next);
+        });
+
+        if (soundLevel === 0) soundBtn.textContent = "Звук: ВЫКЛ 🔇";
+        if (soundLevel === 1) soundBtn.textContent = "Звук: Тихо 🌙";
+        if (soundLevel === 2) soundBtn.textContent = "Звук: Средне ☁️";
+        if (soundLevel === 3) soundBtn.textContent = "Звук: Громко ✨";
+
+        const PICK_LABELS = {
+            flowers: "Цветы 💐",
+            chocolate: "Шоколад 🍫",
+            tea: "Тёплый напиток ☕",
+            movie: "Режим фильма 🎬",
+            care: "Пакет заботы 🧸",
+            hug: "Объятие 🫶"
+        };
+
+        const pickGrid = document.getElementById('pickGrid');
+        const pickPreview = document.getElementById('pickPreview');
+        const sharePickBtn = document.getElementById('sharePick');
+        const sendTelegramBtn = document.getElementById('sendTelegram');
+
+        let selectedPick = localStorage.getItem('selected_pick') || "";
+
+        function renderPick() {
+            const buttons = pickGrid ? pickGrid.querySelectorAll('.pickBtn') : [];
+            buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.pick === selectedPick));
+            if (selectedPick && PICK_LABELS[selectedPick]) pickPreview.textContent = PICK_LABELS[selectedPick] + " — хочу это сегодня.";
+            else pickPreview.textContent = "Пока не выбрано";
+        }
+
+        if (pickGrid) {
+            pickGrid.addEventListener('click', (e) => {
+                const btn = e.target.closest('.pickBtn');
+                if (!btn) return;
+                selectedPick = btn.dataset.pick;
+                localStorage.setItem('selected_pick', selectedPick);
+                renderPick();
+            });
+        }
+
+        function buildPickMessage() {
+            const who = (document.getElementById('name')?.textContent || 'Angelika').trim();
+            const pick = selectedPick && PICK_LABELS[selectedPick] ? PICK_LABELS[selectedPick] : "(не выбрано)";
+            const msg = `💛 Мини‑выбор для ${who}\nВыбор: ${pick}\n\nСегодня немного нежности. 🤍`;
+            return { who, pick, msg };
+        }
+
+        if (sharePickBtn) {
+            sharePickBtn.addEventListener('click', async () => {
+                const { msg } = buildPickMessage();
+                try {
+                    if (navigator.share) {
+                        await navigator.share({ title: 'Выбор мини‑сюрприза', text: msg });
+                        return;
+                    }
+                } catch { }
+                try {
+                    await navigator.clipboard.writeText(msg);
+                    sharePickBtn.textContent = "Скопировано ✅";
+                    setTimeout(() => sharePickBtn.textContent = "Поделиться выбором", 1200);
+                } catch { alert(msg); }
+            });
+        }
+
+        const TELEGRAM_WEBHOOK_URL = "https://telegram.sametarabacitr.workers.dev/";
+
+        if (sendTelegramBtn) {
+            sendTelegramBtn.addEventListener('click', async () => {
+                const { msg } = buildPickMessage();
+                if (!TELEGRAM_WEBHOOK_URL) {
+                    const url = `https://t.me/share/url?url=&text=${encodeURIComponent(msg)}`;
+                    window.open(url, '_blank');
+                    return;
+                }
+                sendTelegramBtn.textContent = "Отправка…";
+                try {
+                    const res = await fetch(TELEGRAM_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: msg }) });
+                    if (!res.ok) throw new Error('Webhook error');
+                    sendTelegramBtn.textContent = "Отправлено ✅";
+                    setTimeout(() => sendTelegramBtn.textContent = "Напиши мне в Telegram", 1400);
+                } catch {
+                    sendTelegramBtn.textContent = "Не удалось (Открыт экран шаринга)";
+                    const url = `https://t.me/share/url?url=&text=${encodeURIComponent(msg)}`;
+                    window.open(url, '_blank');
+                    setTimeout(() => sendTelegramBtn.textContent = "Напиши мне в Telegram", 1600);
+                }
+            });
+        }
+
+        renderPick();
+
+        // Comfort Corner: 5-min timer + Joy cards + Virtual hug
+        const timerValueEl = document.getElementById('timerValue');
+        const timerStartBtn = document.getElementById('timerStart');
+        const timerResetBtn = document.getElementById('timerReset');
+        const teaTimerPanel = document.getElementById('teaTimerPanel');
+
+        let timerTotal = 5 * 60; // seconds
+        let timerLeft = timerTotal;
+        let timerTick = null;
+        let timerRunning = false;
+
+        function fmtTime(s) {
+            const mm = String(Math.floor(s / 60)).padStart(2, '0');
+            const ss = String(s % 60).padStart(2, '0');
+            return `${mm}:${ss}`;
+        }
+
+        function renderTimer() {
+            if (timerValueEl) timerValueEl.textContent = fmtTime(timerLeft);
+        }
+
+        function stopTimer() {
+            timerRunning = false;
+            if (timerTick) clearInterval(timerTick);
+            timerTick = null;
+            if (timerStartBtn) timerStartBtn.textContent = 'Старт';
+        }
+
+        function completeTimer() {
+            stopTimer();
+            timerLeft = timerTotal;
+            renderTimer();
+
+            // small glow
+            if (teaTimerPanel) {
+                teaTimerPanel.classList.add('doneGlow');
+                setTimeout(() => teaTimerPanel.classList.remove('doneGlow'), 1600);
+            }
+
+            // gentle haptic (mobile)
+            try { navigator.vibrate && navigator.vibrate(80); } catch { }
+
+            // a few hearts
+            burstHearts(10);
+        }
+
+        function startTimer() {
+            if (timerRunning) {
+                stopTimer();
+                return;
+            }
+            timerRunning = true;
+            if (timerStartBtn) timerStartBtn.textContent = 'Пауза';
+            timerTick = setInterval(() => {
+                timerLeft = Math.max(0, timerLeft - 1);
+                renderTimer();
+                if (timerLeft === 0) completeTimer();
+            }, 1000);
+        }
+
+        function resetTimer() {
+            stopTimer();
+            timerLeft = timerTotal;
+            renderTimer();
+        }
+
+        if (timerStartBtn) timerStartBtn.addEventListener('click', startTimer);
+        if (timerResetBtn) timerResetBtn.addEventListener('click', resetTimer);
+        renderTimer();
+
+        const joyNextBtn = document.getElementById('joyNext');
+        const joyCopyBtn = document.getElementById('joyCopy');
+        const joyBigEl = document.getElementById('joyBig');
+        const joySmallEl = document.getElementById('joySmall');
+
+        const JOYS = [
+            { big: 'Сегодня достаточно и минимума. Ты не обязана быть сильной каждую минуту.', small: 'Мягко: вода, тепло, отдых. И это уже забота.' },
+            { big: 'Если тебе хочется тишины — это нормально. Тишина тоже лечит.', small: 'Можно просто быть. Без объяснений.' },
+            { big: 'Ты не «ленишься» — ты восстанавливаешься. Это важно.', small: 'Отдых = часть силы.' },
+            { big: 'Вздутие/усталость/эмоции — это не «ты плохая». Это процесс.', small: 'Будь к себе добрее, пожалуйста.' },
+            { big: 'Пусть сегодня будет день маленьких побед: душ, чай, плед.', small: 'Маленькое — тоже большое.' },
+            { big: 'Ты достойна заботы даже в самые сложные дни.', small: 'И да — это правда.' },
+            { big: 'Сделай один лёгкий выбор: тёплое, мягкое, спокойное.', small: 'Остальное подождёт.' }
+        ];
+
+        let lastJoy = -1;
+        function nextJoy() {
+            if (!joyBigEl || !joySmallEl) return;
+            let idx = Math.floor(Math.random() * JOYS.length);
+            if (JOYS.length > 1 && idx === lastJoy) idx = (idx + 1) % JOYS.length;
+            lastJoy = idx;
+            joyBigEl.textContent = JOYS[idx].big;
+            joySmallEl.textContent = JOYS[idx].small;
+        }
+
+        async function copyJoy() {
+            if (!joyBigEl || !joySmallEl || !joyCopyBtn) return;
+            const text = `${joyBigEl.textContent}\n${joySmallEl.textContent}`;
+            try {
+                await navigator.clipboard.writeText(text);
+                joyCopyBtn.textContent = 'Скопировано ✅';
+                setTimeout(() => joyCopyBtn.textContent = 'Копировать', 1200);
+            } catch {
+                alert(text);
+            }
+        }
+
+        if (joyNextBtn) joyNextBtn.addEventListener('click', () => { nextJoy(); burstHearts(6); });
+        if (joyCopyBtn) joyCopyBtn.addEventListener('click', copyJoy);
+
+        const hugBtn = document.getElementById('hugNow');
+        if (hugBtn) hugBtn.addEventListener('click', () => burstHearts(18));
+
+        function burstHearts(count = 10) {
+            const emojis = ['🤍', '💗', '💖', '✨', '🌙'];
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.className = 'floatHeart';
+                const x = 12 + Math.random() * 76; // vw
+                const y = 60 + Math.random() * 28; // vh
+                const s = 16 + Math.random() * 18; // px
+                el.style.setProperty('--x', x + 'vw');
+                el.style.setProperty('--y', y + 'vh');
+                el.style.setProperty('--s', s + 'px');
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 1500);
+            }
+        }
+
+        // Change the name quickly if you want:
+        // document.getElementById('name').textContent = "Анжелика";
+    </script>
+</body>
+
+</html>
